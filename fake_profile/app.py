@@ -1,12 +1,25 @@
 import os
 import joblib
+import streamlit as st
 
+# Get absolute directory of this file
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+# Debug (you can remove later)
+st.write("Current directory:", BASE_DIR)
+st.write("Files in directory:", os.listdir(BASE_DIR))
+
+# Build absolute model paths
 rf_model_path = os.path.join(BASE_DIR, "random_forest_model.pkl")
 nb_model_path = os.path.join(BASE_DIR, "naive_bayes_model.pkl")
 ensemble_model_path = os.path.join(BASE_DIR, "ensemble_model.pkl")
 
+# Check existence
+if not os.path.exists(rf_model_path):
+    st.error(f"Model not found at: {rf_model_path}")
+    st.stop()
+
+# Load models
 rf_model = joblib.load(rf_model_path)
 nb_model = joblib.load(nb_model_path)
 ensemble_model = joblib.load(ensemble_model_path)
@@ -214,3 +227,4 @@ with tab3:
 # -------------------- Footer / Image analysis placeholder --------------------
 
 st.markdown("---")
+
