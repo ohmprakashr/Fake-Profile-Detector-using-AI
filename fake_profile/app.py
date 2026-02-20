@@ -1,3 +1,16 @@
+import os
+import joblib
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+rf_model_path = os.path.join(BASE_DIR, "random_forest_model.pkl")
+nb_model_path = os.path.join(BASE_DIR, "naive_bayes_model.pkl")
+ensemble_model_path = os.path.join(BASE_DIR, "ensemble_model.pkl")
+
+rf_model = joblib.load(rf_model_path)
+nb_model = joblib.load(nb_model_path)
+ensemble_model = joblib.load(ensemble_model_path)
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -199,4 +212,5 @@ with tab3:
         st.info("ℹ️ Upload a batch file first to see performance metrics (using a random split of that data).")
 
 # -------------------- Footer / Image analysis placeholder --------------------
+
 st.markdown("---")
